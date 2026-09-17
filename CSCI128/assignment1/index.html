@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			table,
+			table th,
+			table td {
+				border: 1px solid;
+			}
+
+			table th {
+				text-align: center;
+			}
+
+			.part2 {
+				img {
+					height: 100px;
+				}
+				tr > td:nth-of-type(3) {
+					border-color: #000; /* grrr grrr grrrrrrrr `revert` and `initial` don't work */
+					color: red;
+				}
+			}
+
+			.emoji {
+				/* large didn't work. oops! em sizes basically emulate that though, but not that accurate */
+				font-size: 4em;
+			}
+		</style>
+		<title>Assignment 1</title>
+	</head>
+
+	<body>
+		<h1>
+			<span style="color: purple">Name: teehee :3</span>,
+			<span style="color: green">Student Number: 1711283</span>,
+			<span style="color: orange">Subject Code: CSIT128</span>
+		</h1>
+
+		<!-- this is based on the student number -->
+		<h2>Part 1: Selected Lecture Weeks</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Lecture</th>
+					<th>Week</th>
+					<th>Date of Lecture</th>
+					<th>Date of Tutorial</th>
+					<th>Emoji</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>HyperText Markup Language(HTML)</td>
+					<td>Week 1</td>
+					<td>2026-09-10</td>
+					<td>2026-09-10</td>
+					<td class="emoji">🐱</td>
+				</tr>
+				<tr>
+					<td>XML Schema Definition (XSD)</td>
+					<td>Week 7</td>
+					<td>2026-10-22</td>
+					<td>2026-10-22</td>
+					<td class="emoji">🐣</td>
+				</tr>
+				<tr>
+					<td>HyperText Markup Language(HTML)</td>
+					<td>Week 1</td>
+					<td>2026-09-10</td>
+					<td>2026-09-10</td>
+					<td class="emoji">🐱</td>
+				</tr>
+				<tr>
+					<td>HyperText Markup Language(HTML)</td>
+					<td>Week 1</td>
+					<td>2026-09-10</td>
+					<td>2026-09-10</td>
+					<td class="emoji">🐱</td>
+				</tr>
+				<tr>
+					<td>Web Form/CSS</td>
+					<td>Week 2</td>
+					<td>2026-09-17</td>
+					<td>2026-09-17</td>
+					<td class="emoji">🐤</td>
+				</tr>
+				<tr>
+					<td>XSLT</td>
+					<td>Week 8</td>
+					<td>2026-10-29</td>
+					<td>2026-10-29</td>
+					<td class="emoji">🐦</td>
+				</tr>
+				<tr>
+					<td>JavaScript Basics</td>
+					<td>Week 3</td>
+					<td>2026-09-24</td>
+					<td>2026-09-24</td>
+					<td class="emoji">🐥</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2>Part 2: Supplementary Information for Each Lecture</h2>
+		<!-- images used in this section are either public domain or included with attribution -->
+		<table class="part2">
+			<thead>
+				<tr>
+					<th>Picture</th>
+					<th>Link</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<!-- CC-BY 3.0 W3C Source: https://www.w3.org/html/logo/#downloads -->
+					<td><img src="html5.svg" alt="icon for html5" /></td>
+					<td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a></td>
+					<td>Basics of HTML and Structures</td>
+				</tr>
+				<tr>
+					<!-- public domain, source disappeared -->
+					<td><img src="ftcssvalidator.svg" alt="icon for css" /></td>
+					<td>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">
+							Cascading Style Sheet (CSS)
+						</a>
+					</td>
+					<td>Basics of CSS</td>
+				</tr>
+				<tr>
+					<!-- Public Domain, Source: https://openclipart.org/detail/26952/architetto_--_formulario-by-francesco_rollandin -->
+					<td><img src="form.svg" alt="icon of a form" /></td>
+					<td>
+						<a
+							href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form"
+							target="_blank"
+						>
+							Web(HTML) Form
+						</a>
+					</td>
+					<td>Usage, creation and processing of HTML Form elements</td>
+				</tr>
+				<tr>
+					<!-- CC-BY-SA 4.0 Intl. Nikotaf Source: https://commons.wikimedia.org/wiki/File:Javascript_badge.svg -->
+					<td><img src="Javascript_badge.svg" alt="javascript badge" /></td>
+					<td>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto" target="_blank">
+							JavaScript
+						</a>
+					</td>
+					<td>Basics of JavaScript, how NOT java it is, horrors of <code>Date</code>, etc.</td>
+				</tr>
+				<tr>
+					<!-- Public Domain, Source: my own screenshot -->
+					<td><img src="invalid_xml.png" alt="screenshot of an invalid xml rendering on chrome." /></td>
+					<td>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/XML/XSLT" target="_blank">XSLT</a>
+						and
+						<a href="https://www.w3.org/XML/" target="_blank">XML</a>
+					</td>
+					<td>
+						Syntax of XML, usage of XSLT to style xml documents
+						<del>and possible vuln exploitations of the xslt parser</del>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
