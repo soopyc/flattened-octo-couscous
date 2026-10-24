@@ -1,0 +1,9 @@
+default:
+    just -l
+
+setup:
+    mkcert -ecdsa pgadmin.localhost
+    sudo chown 5050 *.pem
+
+clean:
+    rm *.pem

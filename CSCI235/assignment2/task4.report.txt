@@ -1,0 +1,43 @@
+create or replace function applicant_skills (anumber decimal) returns text
+language plpgsql as $$
+<<body>>
+declare
+	n decimal := anumber;
+begin
+	-- for skill in skills_cur loop
+	-- 	null;
+	-- end loop;
+	return array_to_string(array(
+		select sname from spossessed t where t.anumber = n order by sname asc
+	), ', ');
+end
+$$;
+CREATE FUNCTION
+begin;
+BEGIN
+	select * from applicant_skills(1);
+             applicant_skills             
+------------------------------------------
+ cooking, C programming, Java programming
+(1 row)
+
+	select * from applicant_skills(2);
+     applicant_skills      
+---------------------------
+ driving, Java programming
+(1 row)
+
+	select * from applicant_skills(3);
+              applicant_skills               
+---------------------------------------------
+ C++ programming, Java programming, painting
+(1 row)
+
+	select * from applicant_skills(4);
+ applicant_skills 
+------------------
+ 
+(1 row)
+
+rollback;
+ROLLBACK

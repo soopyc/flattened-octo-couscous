@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 443:443
+    secrets:
+      - pgadmin_password
+    environment:
+      PGADMIN_ENABLE_TLS: "true"
+      PGADMIN_DISABLE_POSTFIX: "true"
+      PGADMIN_DEFAULT_EMAIL: "sophie@services.soopy.moe"
+      PGADMIN_DEFAULT_PASSWORD_FILE: "/run/secrets/pgadmin_password"
+    volumes:
+      - ./pgadmin.localhost.pem:/certs/server.cert
+      - ./pgadmin.localhost-key.pem:/certs/server.key
+      - pgadmin_state:/var/lib/pgadmin
+
+secrets:
+  pgadmin_password:
+    file: pgadmin-password
+
+volumes:
+  pgadmin_state:
+  postgres_data:

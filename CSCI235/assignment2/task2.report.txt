@@ -1,0 +1,98 @@
+begin;
+BEGIN
+do language plpgsql $$
+	declare
+		applicants_cur cursor for select anumber, fname, lname from applicant;
+		skills_cur cursor (aid decimal) for select sname, slevel from spossessed where anumber = aid;
+	begin
+		<<main_l>>
+		for applicant in applicants_cur loop
+			raise notice '% %', applicant.fname, applicant.lname;
+			<<applic_l>>
+			for skill in skills_cur(aid := applicant.anumber) loop
+				raise notice '% %', skill.sname, skill.slevel;
+			end loop applic_l;
+
+			raise notice '--------------------------';
+		end loop main_l;
+	end
+$$;
+psql:task2.sql:20: NOTICE:  Harry Potter
+psql:task2.sql:20: NOTICE:  cooking 9
+psql:task2.sql:20: NOTICE:  C programming 4
+psql:task2.sql:20: NOTICE:  Java programming 9
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Johnny Walker
+psql:task2.sql:20: NOTICE:  driving 9
+psql:task2.sql:20: NOTICE:  Java programming 9
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Mary Poppins
+psql:task2.sql:20: NOTICE:  C++ programming 10
+psql:task2.sql:20: NOTICE:  Java programming 9
+psql:task2.sql:20: NOTICE:  painting 5
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Michael Collins
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Margaret Finch
+psql:task2.sql:20: NOTICE:  SQL programming 6
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Claudia Kowalewski
+psql:task2.sql:20: NOTICE:  SQL programming 8
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  James Bond
+psql:task2.sql:20: NOTICE:  cooking 10
+psql:task2.sql:20: NOTICE:  SQL programming 9
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Stephen Staunton
+psql:task2.sql:20: NOTICE:  cooking 9
+psql:task2.sql:20: NOTICE:  SQL programming 3
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Joseph Staunton
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  John Spiderman
+psql:task2.sql:20: NOTICE:  cooking 1
+psql:task2.sql:20: NOTICE:  database design 10
+psql:task2.sql:20: NOTICE:  painting 9
+psql:task2.sql:20: NOTICE:  SQL programming 10
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  George TheFirst
+psql:task2.sql:20: NOTICE:  C programming 5
+psql:task2.sql:20: NOTICE:  network administration 10
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Homer Simpson
+psql:task2.sql:20: NOTICE:  cooking 1
+psql:task2.sql:20: NOTICE:  driving 3
+psql:task2.sql:20: NOTICE:  Java programming 9
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Neil Superman
+psql:task2.sql:20: NOTICE:  database administration 6
+psql:task2.sql:20: NOTICE:  network administration 7
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Ivan TheTerrible
+psql:task2.sql:20: NOTICE:  painting 5
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Penelope Princess
+psql:task2.sql:20: NOTICE:  database administration 4
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Zhi Chao Zhong
+psql:task2.sql:20: NOTICE:  SQL programming 4
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Richard TheLionheart
+psql:task2.sql:20: NOTICE:  cooking 9
+psql:task2.sql:20: NOTICE:  database administration 7
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Sherlock Holmes
+psql:task2.sql:20: NOTICE:  bricklaying 6
+psql:task2.sql:20: NOTICE:  database administration 3
+psql:task2.sql:20: NOTICE:  database design 9
+psql:task2.sql:20: NOTICE:  network administration 5
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Robin Hood
+psql:task2.sql:20: NOTICE:  database administration 8
+psql:task2.sql:20: NOTICE:  --------------------------
+psql:task2.sql:20: NOTICE:  Janusz Getta
+psql:task2.sql:20: NOTICE:  SQL programming 10
+psql:task2.sql:20: NOTICE:  --------------------------
+DO
+commit;
+COMMIT

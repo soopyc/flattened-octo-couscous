@@ -1,0 +1,64 @@
+SET enable_seqscan=OFF;
+SET
+-- q1
+create index city_state_employer_idx on employer(city, state);
+CREATE INDEX
+explain select ename from employer where city = 'Wollongong' and state = 'NSW';
+                                        QUERY PLAN                                        
+------------------------------------------------------------------------------------------
+ Index Scan using city_state_employer_idx on employer  (cost=0.14..8.15 rows=1 width=218)
+   Index Cond: (((city)::text = 'Wollongong'::text) AND ((state)::text = 'NSW'::text))
+(2 rows)
+
+drop index city_state_employer_idx;
+DROP INDEX
+-- q2
+-- technically postgres already has an index for this (applies_pkey)
+create index applies_anumber_idx on applies(anumber);
+CREATE INDEX
+explain select anumber, count(*) from applies group by anumber;
+                                           QUERY PLAN                                            
+-------------------------------------------------------------------------------------------------
+ GroupAggregate  (cost=0.14..12.71 rows=19 width=22)
+   Group Key: anumber
+   ->  Index Only Scan using applies_anumber_idx on applies  (cost=0.14..12.42 rows=19 width=14)
+(3 rows)
+
+drop index applies_anumber_idx;
+DROP INDEX
+-- q3
+create index sneeded_idx on sneeded(sname, slevel);
+CREATE INDEX
+explain select distinct sname, slevel from sneeded;
+                                       QUERY PLAN                                        
+-----------------------------------------------------------------------------------------
+ Unique  (cost=0.14..12.50 rows=18 width=90)
+   ->  Index Only Scan using sneeded_idx on sneeded  (cost=0.14..12.41 rows=18 width=90)
+(2 rows)
+
+drop index sneeded_idx;
+DROP INDEX
+-- q4
+create index salary_position_idx on position(salary);
+CREATE INDEX
+explain select title, salary from position order by salary;
+                                       QUERY PLAN                                        
+-----------------------------------------------------------------------------------------
+ Index Scan using salary_position_idx on "position"  (cost=0.14..12.29 rows=10 width=92)
+(1 row)
+
+drop index salary_position_idx;
+DROP INDEX
+-- q5
+create index emplby_name_todate_idx on emplby(ename, todate);
+CREATE INDEX
+explain select max(todate) from emplby where ename like 'Jam%';
+                                           QUERY PLAN                                            
+-------------------------------------------------------------------------------------------------
+ Aggregate  (cost=13.58..13.59 rows=1 width=4)
+   ->  Index Only Scan using emplby_name_todate_idx on emplby  (cost=0.14..13.58 rows=1 width=4)
+         Filter: ((ename)::text ~~ 'Jam%'::text)
+(3 rows)
+
+drop index emplby_name_todate_idx;
+DROP INDEX
